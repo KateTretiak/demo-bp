@@ -15,6 +15,7 @@ outputs:
 grains:
   first:
     kind: shell
+    depends-on: second
     spec: 
       host:
         name: '{{ .inputs.host_name }}'
@@ -25,7 +26,6 @@ grains:
               command: "echo this is the output of the second grain:  {{ .grains.second.activities.destroy.commands.report.output }}"
   second:
     kind: shell
-    depends-on: first
     spec: 
       host:
         name: '{{ .inputs.host_name }}'
